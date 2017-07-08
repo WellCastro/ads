@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<table id="property" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Id</th>
+                <th>Purpose</th>
+                <th>Listing_type</th>
+                <th>Published_on</th>
+            </tr>
+        </thead>
+        <tbody>
+        	{% for im in properties %}
+            <tr>
+                <td>{{ im.title}}</td>
+                <td>{{ im.name}}</td>
+                <td>{{ im.city}}</td>
+                <td>{{ im.state}}</td>
+                <td>{{ im.id_json}}</td>
+                <td>{{ im.purpose}}</td>
+                <td>{{ im.listing_type}}</td>
+                <td>{{ im.published_on}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

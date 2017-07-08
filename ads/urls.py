@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
-
+from core.views import Index
 from property.views import PropertyView
 
 
@@ -28,5 +28,6 @@ urlpatterns = [
     url(r'^api/property/add/$', PropertyView.as_view()),
     url(r'^api/property/remove/(?P<id>[\w_-]+)$', PropertyView.as_view()),
     # webpage
+    url(r'^$', Index.as_view(), name='index'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
