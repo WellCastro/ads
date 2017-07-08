@@ -11,10 +11,14 @@ from .serializers import PropertySerializer
 class PropertyView(APIView):
     # url: api/property/
     def get(self, request, id=None, format=None):
+        search = request.query_params.get('search')
         if id == 'all':
             qs = Property.objects.all()
+        elif search:
+            qs = Property.objects.filter(title__contains=search)
         else:
             qs = Property.objects.filter(id_json=id)
+
         serializer = PropertySerializer(qs, many=True)
 
         return Response(serializer.data)
@@ -30,6 +34,7 @@ class PropertyView(APIView):
 
     # url: api/property/remove/id
     def delete(self, request, id, format=None):
+        print id
         try:
             qs = Property.objects.get(id_json=id)
             qs.delete()

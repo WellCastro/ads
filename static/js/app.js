@@ -16,3 +16,28 @@ $(document).ready(function() {
         }
     } );
 } );
+
+$(".delete").click(function(){
+    var id_json = this.id;
+    delete_all(id_json);
+});
+
+function delete_all(id) {
+    $.ajax({
+        url : "/api/property/remove/"+id,
+        type : "DELETE", 
+
+        // handle a successful response
+        success : function(json) {
+            var node = "tr[id="+id+"]"
+            $(node).remove();
+            console.log("deleted id"+id)
+
+        },
+
+        // handle a non-successful response
+        error : function(xhr,errmsg,err) {
+            console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+        }
+    });
+};

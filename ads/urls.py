@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
-from core.views import Index
+from core.views import Index, Api
 from property.views import PropertyView
 
 
@@ -26,8 +26,10 @@ urlpatterns = [
     # api
     url(r'^api/property/(?P<id>[\w_-]+)$', PropertyView.as_view(), name='property_list'),
     url(r'^api/property/add/$', PropertyView.as_view()),
-    url(r'^api/property/remove/(?P<id>[\w_-]+)$', PropertyView.as_view()),
+    url(r'^api/property/remove/(?P<id>[\w_-]+)', PropertyView.as_view()),
     # webpage
     url(r'^$', Index.as_view(), name='index'),
+    url(r'^api/', Api.as_view(), name='api_doc'),
+    url(r'^populate/', Api.as_view(), name='populate'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
