@@ -20,7 +20,8 @@ from property.views import PropertyView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^property/$', PropertyView.as_view(), name='porperty_list'),
-    url(r'^property/add$', PropertyView.as_view(), name='porperty_list'),
+    url(r'^api/property/$', PropertyView.as_view(), name='property_list'),
+    url(r'^api/property/add/$', PropertyView.as_view()),
+    url(r'^api/property/remove/(?P<id>[\w.@+-]+)$', PropertyView.as_view()),
 
 ]
