@@ -10,11 +10,14 @@ from .serializers import PropertySerializer
 # View property.
 class PropertyView(APIView):
     # url: api/property/
-    def get(self, request, format=None):
+    def get(self, request, id=None, format=None):
+        if id == 'all':
             qs = Property.objects.all()
-            serializer = PropertySerializer(qs, many=True)
+        else:
+            qs = Property.objects.filter(id_json=id)
+        serializer = PropertySerializer(qs, many=True)
 
-            return Response(serializer.data)
+        return Response(serializer.data)
 
     # url: api/property/add/
     def post(self, request, format=None):
@@ -25,12 +28,10 @@ class PropertyView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    # url: employee/remove/email
+    # url: api/property/remove/id
     def delete(self, request, id, format=None):
-    	print id
         try:
-            qs = Property.objects.filter(id_json=id)
-            print qs
+            qs = Property.objects.get(id_json=id)
             qs.delete()
             resp_status = status.HTTP_200_OK
         except:
