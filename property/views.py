@@ -60,3 +60,12 @@ class PropertyView(APIView):
             pass
 
         return Response(resp_status, status=resp_status)
+
+    def put(self, request, id, format=None):
+        qs = Property.objects.get(id_json=id)
+        serializer = PropertySerializer(qs, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

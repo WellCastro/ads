@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^api/property/list/(?P<id>.*)$', PropertyView.as_view(), name='property_list'),
     url(r'^api/property/add/$', PropertyView.as_view()),
     url(r'^api/property/remove/(?P<id>[\w_-]+)$', PropertyView.as_view()),
+    url(r'^api/property/edit/(?P<id>[\w_-]+)$', PropertyView.as_view()),
 
     # webpage
     url(r'^$', Index.as_view(), name='index'),

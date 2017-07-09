@@ -18,6 +18,15 @@
     <h3 class="panel-title"><strong>GET</strong> - Por ID</h3>
   </div>
   <div class="panel-body">
+    <strong>
+      <ul>
+        <li>
+          <code>URL: http://localhost:8000/api/property/list/{ID}</code>
+        </li>
+    </ul>
+    </strong>
+  </div>
+  <div class="panel-body">
     <code>curl -X GET "http://localhost:8000/api/property/list/160223c1a318e5ba9a8eaa663a07920c" </code>
   </div>
 </div>
@@ -30,6 +39,9 @@
   <div class="panel-body">
     <strong>
       <ul>
+        <li>
+          <code>URL: http://localhost:8000/api/property/list/?search={TÍTULO}</code>
+        </li>
         <li>
           Para pesquisar pelo título do imóvel é necessário informa-ló através do parâmetro SEARCH na url
         </li>
@@ -49,6 +61,9 @@
     <strong>
         <ul>
           <li>
+            <code>URL: http://localhost:8000/api/property/add/</code>
+          </li>
+          <li>
             Todos os campos no body são obrigatórios.
           </li>
           <li>
@@ -62,9 +77,39 @@
   </div>
 </div>
 
+<div class="panel panel-warning">
+  <div class="panel-heading">
+    <h3 class="panel-title"><strong>PUT</strong> - Editar imóvel</h3>
+  </div>
+  <div class="panel-body">
+    <strong>
+        <ul>
+          <li>
+            <code>URL: http://localhost:8000/api/property/edit/{ID}</code>
+          </li>
+          <li>
+            Todos os campos no body são obrigatórios.
+          </li>
+      </ul>
+    </strong>
+  </div>
+  <div class="panel-body">
+    <code>curl -X PUT -H "Content-Type: application/json" -d '{"title": "Teste Casa para Venda em Bosque Maia, Guarulhos/SP","state": "SP","city": "Guarulhos", "name": "Bosque Maia","id_json": "5e1a08c70fe0abc4af7ad2a49cbc0287","purpose": "Venda","listing_type": "Casa","published_on": "2014-12-23 03:01:51 BRST-0200"}' "http://localhost:8000/api/property/edit/5e1a08c70fe0abc4af7ad2a49cbc0287"</code>
+  </div>
+</div>
+
 <div class="panel panel-danger">
   <div class="panel-heading">
     <h3 class="panel-title"><strong>Delete</strong> - Por ID</h3>
+  </div>
+  <div class="panel-body">
+    <strong>
+      <ul>
+        <li>
+          <code>URL: http://localhost:8000/api/property/remove/{ID}</code>
+        </li>
+    </ul>
+    </strong>
   </div>
   <div class="panel-body">
     <code>curl -X DELETE "http://localhost:8000/api/property/remove/1111"</code>
