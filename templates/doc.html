@@ -12,6 +12,9 @@
   <div class="panel-body">
     <code>curl -X GET "http://localhost:8000/api/property/list/all"</code>
   </div>
+  <div class="panel-body">
+    <a href="#page">Paginação da API</a>
+  </div>
 </div>
 <div class="panel panel-primary">
   <div class="panel-heading">
@@ -113,6 +116,36 @@
   </div>
   <div class="panel-body">
     <code>curl -X DELETE "http://localhost:8000/api/property/remove/1111"</code>
+  </div>
+</div>
+
+<div class="panel panel-primary" id="page">
+  <div class="panel-heading">
+    <h3 class="panel-title"><strong>Paginação</strong> - Toda resposta da API informa os seguintes campos</h3>
+  </div>
+  <div class="panel-body">
+    <strong>
+        <ul>
+          <li>
+            Por padrão o retorno da API é de 100 registros por consulta.
+          </li>
+          <li>
+            <code>Count:</code>Quantidade de registro da consulta.
+          </li>
+          <li>
+            <code>Next:</code>Próxima página da consulta.
+          </li>
+          <li>
+            <code>Previous:</code>Página anterior da consulta.
+          </li>
+      </ul>
+    </strong>
+  </div>
+  <div class="panel-body">
+    <code>Exemplo de retorno:</code>
+    <pre>
+      {"count":1,"next":null,"previous":null,"results":[{"title":"Teste Casa para Venda em Bosque Maia, Guarulhos/SP","name":"Bosque Maia","city":"Guarulhos","state":"SP","id_json":"5e1a08c70fe0abc4af7ad2a49cbc0287","purpose":"Venda","listing_type":"Casa","published_on":"2014-12-23 03:01:51 BRST-0200"}]}
+    </pre>
   </div>
 </div>
 {% endblock %}
