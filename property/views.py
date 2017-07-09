@@ -1,10 +1,21 @@
 # -*- coding: utf-8 -*-
+import sys
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
 from .models import Property
 from .serializers import PropertySerializer
+from rest_framework.pagination import PageNumberPagination
+
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+
+class ItemsSetPagination(PageNumberPagination):
+    # config page size
+    page_size = 100
 
 
 # View property.
@@ -19,9 +30,14 @@ class PropertyView(APIView):
         else:
             qs = Property.objects.filter(id_json=id)
 
-        serializer = PropertySerializer(qs, many=True)
+        # control pagination
+        pagination_class = ItemsSetPagination
+        paginator = pagination_class()
+        page = paginator.paginate_queryset(qs, request)
 
-        return Response(serializer.data)
+        serializer = PropertySerializer(page, many=True)
+
+        return paginator.get_paginated_response(serializer.data)
 
     # url: api/property/add/
     def post(self, request, format=None):

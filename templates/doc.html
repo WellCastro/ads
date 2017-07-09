@@ -4,31 +4,67 @@
 <br>
 <br>
 <br>
-<h1>Exemplos:</h1>
-<div class="panel panel-info">
+<h1>Exemplos de chamada da API:</h1>
+<div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">GET imóveis</h3>
+    <h3 class="panel-title"><strong>GET</strong> - Lista com todos os imóveis</h3>
   </div>
   <div class="panel-body">
-    <code>curl -X GET "http://localhost:8000/api/property/all"</code>
+    <code>curl -X GET "http://localhost:8000/api/property/list/all"</code>
+  </div>
+</div>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><strong>GET</strong> - Por ID</h3>
   </div>
   <div class="panel-body">
-    <code>curl -X GET COM SEARCH "http://localhost:8000/api/property/all"</code>
+    <code>curl -X GET "http://localhost:8000/api/property/list/160223c1a318e5ba9a8eaa663a07920c" </code>
+  </div>
+</div>
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><strong>GET</strong> - Pesquisa FULL TEXT</h3>
+  </div>
+  <div class="panel-body">
+    <strong>
+      <ul>
+        <li>
+          Para pesquisar pelo título do imóvel é necessário informa-ló através do parâmetro SEARCH na url
+        </li>
+    </ul>
+    </strong>
+  </div>
+  <div class="panel-body">
+    <code>curl -X GET COM SEARCH curl -X GET "http://localhost:8000/api/property/list/?search=Casa%20para%20Venda%20em%20Bosque%20Maia,%20Guarulhos/SP"</code>
   </div>
 </div>
 
 <div class="panel panel-info">
   <div class="panel-heading">
-    <h3 class="panel-title">POST imóveis</h3>
+    <h3 class="panel-title"><strong>POST</strong> - Adicionar imóvel</h3>
+  </div>
+  <div class="panel-body">
+    <strong>
+        <ul>
+          <li>
+            Todos os campos no body são obrigatórios.
+          </li>
+          <li>
+            Não é possível criar um imóvel com um ID já existente.
+          </li>
+      </ul>
+    </strong>
   </div>
   <div class="panel-body">
     <code>curl -X POST -H "Content-Type: application/json" -d '{"title": "Casa para Venda em Bosque Maia, Guarulhos/SP","state": "SP","city": "Guarulhos", "name": "Bosque Maia","id_json": "1111","purpose": "Venda","listing_type": "Casa","published_on": "2014-12-23 03:01:51 BRST-0200"}' "http://localhost:8000/api/property/add/"</code>
   </div>
 </div>
 
-<div class="panel panel-info">
+<div class="panel panel-danger">
   <div class="panel-heading">
-    <h3 class="panel-title">Delete imóvel</h3>
+    <h3 class="panel-title"><strong>Delete</strong> imóvel - Por ID</h3>
   </div>
   <div class="panel-body">
     <code>curl -X DELETE "http://localhost:8000/api/property/remove/1111"</code>

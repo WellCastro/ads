@@ -4,15 +4,15 @@ from __future__ import unicode_literals
 import requests
 import json
 
-from django.shortcuts import render
 from django.views import generic
-
-from property.models import Property
 from django.conf import settings
+from django.shortcuts import HttpResponse
+from property.views import Property
+
 
 def get_all():
     # get in API properties
-    r = requests.get('http://localhost:8000/api/property/all')
+    r = requests.get('http://localhost:8000/api/property/list/all')
     return r.json()
 
 def count_city():
@@ -21,7 +21,7 @@ def count_city():
     city_set = set()
     labels = []
 
-    for i in list(qs):
+    for i in list(qs['results']):
         value = i.get('city')
         city_list.append(value)
         city_set.add(value)
@@ -45,7 +45,6 @@ def post_table(data):
 
 
 def populate_table():
-    # Property.objects.all().delete()
     path = settings.BASE_DIR + "/utils/seed.json"
     json_file = None
     try:
@@ -81,3 +80,21 @@ class Index(generic.TemplateView):
 
 class Api(generic.TemplateView):
     template_name = "doc.html"
+
+
+def reset(request):
+
+    if request.method == 'GET':
+        try:
+            print 'entrou'
+            response_data = {}
+            Property.objects.all().delete()
+            populate_table()
+            response_data['status'] = 'ok'
+        except Exception, e:
+            print e
+
+    return HttpResponse(
+        json.dumps(response_data),
+        content_type="application/json"
+    )
