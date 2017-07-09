@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
+import logging
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -8,6 +9,8 @@ from rest_framework import status
 from .models import Property
 from .serializers import PropertySerializer
 from rest_framework.pagination import PageNumberPagination
+
+log = logging.getLogger(__name__)
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -23,6 +26,8 @@ class PropertyView(APIView):
     # url: api/property/
     def get(self, request, id=None, format=None):
         search = request.query_params.get('search')
+        log.info('List: %r' % id)
+
         if id == 'all':
             qs = Property.objects.all()
         elif search:
@@ -42,10 +47,12 @@ class PropertyView(APIView):
     # url: api/property/add/
     def post(self, request, format=None):
         serializer = PropertySerializer(data=request.data)
+        log.info('POST: %r' % request.data)
 
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        log.error('POST BAD request: %r' % request.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     # url: api/property/remove/id
@@ -56,6 +63,7 @@ class PropertyView(APIView):
             qs.delete()
             resp_status = status.HTTP_200_OK
         except:
+            log.error('DEL NOT FOUND: %r' % id)
             resp_status = status.HTTP_404_NOT_FOUND
             pass
 
@@ -68,4 +76,5 @@ class PropertyView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
+        log.error('PUT BAD request: %r' % request.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
