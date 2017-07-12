@@ -25,4 +25,6 @@ services:
 
   db:
     image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD="ads1234"
     container_name: ms01
