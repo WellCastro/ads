@@ -21,7 +21,7 @@ services:
     volumes:
       - ./assets:/static
     expose:
-      - "8000"
+      - "80"
 
   db:
     image: mysql:latest
