@@ -1,6 +1,5 @@
 # API:
-
-A Api considera a palavra em todo o conteúdo da URL informada, sendo assim a busca não é apenas por texto renderizado por um navegador, mas sim em todo o código da página.
+API para consulta, adição, alteração e deleção de dados.
 
 ## Documentação:
 - <a href="">Link</a>
