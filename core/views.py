@@ -11,7 +11,7 @@ from django.shortcuts import HttpResponse
 from property.views import Property
 
 log = logging.getLogger(__name__)
-URL = "http://localhost/api/property"
+URL = "http://localhost:8001/api/property"
 
 def get_all():
     # get in API properties

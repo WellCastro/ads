@@ -27,8 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['45.55.190.255', 'localhost', '127.0.0.1']
 
-
-# APPEND_SLASH  = True
 # Application definition
 
 INSTALLED_APPS = [
