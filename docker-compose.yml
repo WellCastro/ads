@@ -7,7 +7,6 @@ services:
       - "8000:8000"
     volumes:
       - ./config:/etc/nginx/conf.d
-      - ./assets:/static
     depends_on:
       - web
   web:
@@ -18,8 +17,6 @@ services:
        - "80:8001"
     depends_on:
       - db
-    volumes:
-      - ./assets:/static
     expose:
       - "80"
 
