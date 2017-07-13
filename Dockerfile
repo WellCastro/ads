@@ -15,4 +15,6 @@ RUN pip install -r /opt/deploy/ads/requirements.txt
 
 WORKDIR /opt/deploy/ads
 
+RUN python manage.py collectstatic --noinput
+
 EXPOSE 8000
