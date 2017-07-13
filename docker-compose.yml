@@ -25,6 +25,8 @@ services:
 
   db:
     image: mysql:latest
+    volumes:
+    - /var/lib/mysql
     environment:
     - MYSQL_ROOT_PASSWORD=ads1234
     - MYSQL_USER=django
