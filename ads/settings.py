@@ -25,7 +25,7 @@ SECRET_KEY = '2cabba&v*@@vpev5y5b#r7q2-)@$9&k#8)%olhi_)j94@b-v2&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['45.55.190.255']
+ALLOWED_HOSTS = ['45.55.190.255', 'localhost']
 
 # Application definition
 
@@ -75,33 +75,21 @@ WSGI_APPLICATION = 'ads.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ads_db',
-        'USER': 'django',
-        'PASSWORD': 'django1234',
-        'HOST': 'db',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
-
-# AUTH_PASSWORD_VALIDATORS = [
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-#     },
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-#     },
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-#     },
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-#     },
-# ]
+# DATABASES = {
+#    'default': {
+#       'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'ads_db',
+#        'USER': 'django',
+#        'PASSWORD': 'django1234',
+#        'HOST': 'db',
+#        'PORT': '3306',
+#    }
+# }
 
 
 # Internationalization
@@ -128,7 +116,6 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, "assets")
 
 # log
-
 if not os.path.exists(os.path.join(BASE_DIR, 'logs')):
     os.mkdir(os.path.join(BASE_DIR, 'logs'))
 

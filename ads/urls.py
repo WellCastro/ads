@@ -17,9 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
-from core.views import Index, Api
 from property.views import PropertyView
-from core import views as core_views
 
 
 urlpatterns = [
@@ -30,9 +28,5 @@ urlpatterns = [
     url(r'^api/property/remove/(?P<id>[\w_-]+)$', PropertyView.as_view()),
     url(r'^api/property/edit/(?P<id>[\w_-]+)$', PropertyView.as_view()),
 
-    # webpage
-    url(r'^$', Index.as_view(), name='index'),
-    url(r'^api/', Api.as_view(), name='api_doc'),
-    url(r'^reset/', core_views.reset, name='reset'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
