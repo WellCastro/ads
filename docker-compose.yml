@@ -19,6 +19,7 @@ services:
       - db
     expose:
       - "8000"
+      - "8001"
 
   db:
     image: mysql:latest
