@@ -5,8 +5,6 @@ import requests
 import logging
 import json
 
-from django.conf import settings
-
 log = logging.getLogger(__name__)
 
 URL = "http://45.55.190.255:8001/api/property"
@@ -22,7 +20,7 @@ def post_table(data):
 
 
 def populate_table():
-    path = settings.BASE_DIR + "/utils/seed.json"
+    path = "./seed.json"
     json_file = None
     try:
         with open(path) as json_data:
