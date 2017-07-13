@@ -9,10 +9,11 @@ from django.conf import settings
 from django.shortcuts import HttpResponse
 from property.views import Property
 
+URL = "http://localhost:8001/api/property"
 
 def get_all():
     # get in API properties
-    r = requests.get('http://localhost:8000/api/property/list/all')
+    r = requests.get(URL + '/list/all')
     return r.json()
 
 def count_city():
@@ -36,7 +37,7 @@ def count_city():
 
 def post_table(data):
     try:
-        r = requests.post('http://localhost:8000/api/property/add/', data=data)
+        r = requests.post(URL + '/add/', data=data)
     except Exception, e:
         print e
         print r.text
