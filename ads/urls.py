@@ -21,12 +21,11 @@ from property.views import PropertyView
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin_ads/', admin.site.urls),
     # api
     url(r'^api/property/list/(?P<id>.*)$', PropertyView.as_view(), name='property_list'),
     url(r'^api/property/add/$', PropertyView.as_view()),
     url(r'^api/property/remove/(?P<id>[\w_-]+)$', PropertyView.as_view()),
     url(r'^api/property/edit/(?P<id>[\w_-]+)$', PropertyView.as_view()),
-
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
