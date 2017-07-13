@@ -33,3 +33,5 @@ services:
     - MYSQL_PASSWORD=django1234
     - MYSQL_DATABASE=ads_db
     container_name: ms01
+volumes:
+  my-datavolume:
