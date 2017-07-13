@@ -3,7 +3,7 @@ MAINTAINER Wellington Castro "wcesarc@gmail.com"
 
 RUN apt-get update
 RUN apt-get install -y python-pip
-RUN apt-get install libmysqlclient-dev
+RUN apt-get install -y libmysqlclient-dev
 
 
 RUN mkdir -p /opt/deploy/ads
