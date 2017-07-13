@@ -3,13 +3,15 @@ from __future__ import unicode_literals
 
 import requests
 import json
+import logging
 
 from django.views import generic
 from django.conf import settings
 from django.shortcuts import HttpResponse
 from property.views import Property
 
-URL = "http://localhost:8001/api/property"
+log = logging.getLogger(__name__)
+URL = "http://localhost/api/property"
 
 def get_all():
     # get in API properties
@@ -37,11 +39,9 @@ def count_city():
 
 def post_table(data):
     try:
-        r = requests.post(URL + '/add/', data=data)
+        requests.post(URL + '/add/', data=data)
     except Exception, e:
-        print e
-        print r.text
-        # log aqui com id
+        log.error('POST error: %r' % data)
         pass
 
 
@@ -65,7 +65,6 @@ def populate_table():
                 "listing_type": j.get('listingType'),
                 "published_on": j.get('published_on')}
         post_table(body)
-    print body
 
 
 class Index(generic.TemplateView):
@@ -73,7 +72,6 @@ class Index(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(Index, self).get_context_data(**kwargs)
-        # populate_table()
         context["properties"] = get_all()
         context["cities"] = count_city()
 
@@ -87,7 +85,6 @@ def reset(request):
 
     if request.method == 'GET':
         try:
-            print 'entrou'
             response_data = {}
             Property.objects.all().delete()
             populate_table()
