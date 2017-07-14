@@ -8,8 +8,8 @@ API para consulta, adição, alteração e deleção de dados.
 # Tecnologias
 
 - [Python](https://www.python.org)
-- [Django](https://bottlepy.org/docs/dev/)
-- [Django Rest Framework](http://docs.python-requests.org/en/master/)
+- [Django 1.11](https://docs.djangoproject.com/en/1.11/releases/1.11/)
+- [Django Rest Framework](http://www.django-rest-framework.org/)
 
 
 # Executando a aplicação localmente:
@@ -29,7 +29,14 @@ docker-compose python manage.py runserver migrate
 docker-compose up -d
 ```
 
+# Tests
+```
+cd tests
+```
+```
+pytest tests.py
+```
 
 # API em produção:
 
-<a href="">URL</a>
+<a href="http://45.55.190.255:8001/api/property/list/all">URL</a>
