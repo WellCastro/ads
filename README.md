@@ -39,4 +39,4 @@ pytest tests.py
 
 # API em produção:
 
-<a href="http://45.55.190.255:8001/api/property/list/all">URL</a>
+<a href="http://45.55.190.255:8001/api/property/list/all?format=json">URL</a>
