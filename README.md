@@ -1,8 +1,8 @@
 # API:
 API para consulta, adição, alteração e deleção de dados.
 
-## Documentação:
-- <a href="">Link</a>
+## Documentação da API(exemplos):
+- <a href="http://45.55.190.255:8002/api/">Link</a>
 
   
 # Tecnologias
